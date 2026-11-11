@@ -1,0 +1,8 @@
+{
+  "name": "Audit Ports and Run Property-Based Tests",
+  "trigger": "pre-commit",
+  "action": {
+    "command": "go test -v ./internal/core/services/... && go vet ./...",
+    "abort_on_error": true
+  }
+}

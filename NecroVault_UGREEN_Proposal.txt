@@ -1,0 +1,39 @@
+1. What does your Skill do?
+NecroVault is an autonomous on-premise binary archeology engine that identifies, extracts, and compiles obsolete or corrupted legacy media files into sandboxed WebAssembly sandboxes locally on UGREEN AI NAS.
+
+2. Who is your target user, and what is their problem?
+Creative studios, archivists, and personal NAS owners with dormant cold-storage drives containing abandoned proprietary formats (Adobe Flash SWF, legacy Mac Director, old Win32 binaries) that modern operating systems refuse to open.
+
+3. What is your solution?
+An air-gapped, background NAS pipeline combining a high-performance compiled Go inspection engine with a local multimodal AI agent that parses binary entropy, restores missing assets, and runs them safely inside sandboxed WebAssembly canvases.
+
+4. What is the main user flow?
+User drops legacy archives into a watched NAS folder -> NecroVault triggers on file write -> Calculates byte entropy and magic headers -> Local agent synthesizes WebAssembly reconstruction -> User opens an interactive, modern preview directly in their UGOS desktop browser.
+
+5. How is your idea different from existing tools or common AI solutions?
+Cloud SaaS converters refuse legacy binaries, impose strict file-size limits, and violate privacy compliance. NecroVault runs 100% locally on the NAS hardware bus, analyzing terabytes of dormant data with zero cloud data leakage.
+
+6. Which UGREEN AI NAS features does your Skill use, and at which step?
+- UGOS File Event Watcher: Step 1 (Triggering automated autopsy upon file ingest).
+- High-Performance Storage Bus: Step 2 (Rapid chunked byte-slicing without memory bloat).
+- Local Inference Engine: Step 3 (Semantic asset reconstruction).
+- UGOS Web Desktop/Skills Hub: Step 4 (Serving the sandboxed Wasm interactive player).
+
+7. What is your technical approach?
+- Architecture: Hexagonal (Ports & Adapters) separating pure domain logic from system adapters.
+- Engine: Compiled Go core for microsecond byte-level parsing and WebAssembly synthesis.
+- Agent Orchestration: Local agent coordinates asset restoration based on Shannon entropy telemetry.
+- Security: Sandboxed memory allocations ensure corrupted files cannot crash the host NAS.
+
+8. What have you built so far? What is not built yet? What still needs testing on a NAS?
+Built: Pure Hexagonal Go domain, Shannon entropy scanner, WebAssembly compiler adapter, socket IPC bridge, and Property-Based Test suites.
+Not Built: Native UGOS file-watcher daemon bindings.
+NAS Testing: Validating multi-gigabyte cold storage indexing speeds on the iDX6011 Pro hardware.
+
+9. How will you test your Skill if you become a Finalist?
+- Core Test 1: Ingest 50 legacy Macromedia Flash (.swf) animations; verify automated compilation into interactive Wasm.
+- Core Test 2: Ingest 10 GB of mixed dormant archive files; verify zero memory leaks or background CPU starvation.
+- Edge Case: Ingest severely corrupted zero-byte and truncated binaries; verify graceful error logging with zero panics via Property-Based invariants.
+
+10. What are the known limits, risks, or outside dependencies of your Skill?
+Requires browser WebAssembly support on client devices. Highly complex 3D legacy software cannot be fully reconstructed without high-end emulation runtimes. Zero external cloud dependencies.

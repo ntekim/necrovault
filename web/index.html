@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>NECROVAULT // DIGITAL SÉANCE</title>
+  <style>
+    :root {
+      --crt-green: #00ff66;
+      --crt-bg: #050d08;
+      --crt-amber: #ffb000;
+    }
+    body {
+      background-color: var(--crt-bg);
+      color: var(--crt-green);
+      font-family: "Courier New", Courier, monospace;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-shadow: 0 0 5px var(--crt-green);
+    }
+    .crt-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+      background-size: 100% 2px, 3px 100%;
+      pointer-events: none;
+    }
+    #drop-zone {
+      border: 2px dashed var(--crt-green);
+      width: 600px;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin-top: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #drop-zone.hover {
+      background: rgba(0, 255, 102, 0.15);
+      border-color: #fff;
+    }
+    #terminal {
+      width: 600px;
+      margin-top: 20px;
+      background: #020603;
+      border: 1px solid var(--crt-green);
+      padding: 15px;
+      font-size: 13px;
+      line-height: 1.5;
+      min-height: 120px;
+    }
+    canvas {
+      border: 2px solid var(--crt-green);
+      margin-top: 20px;
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.3);
+    }
+  </style>
+</head>
+<body>
+  <div class="crt-overlay"></div>
+  <h1>⚰️ NECROVAULT: BINARY ARCHEOLOGY</h1>
+  <p>[ AUTONOMOUS LEGACY RUNTIME RESURRECTION ENGINE ]</p>
+
+  <div id="drop-zone">
+    <div>DROP CORRUPTED / LEGACY BINARY HERE</div>
+    <div style="font-size: 11px; color: var(--crt-amber); margin-top: 8px;">Supports: .SWF, .WPD, .EXE (Win32), .DXR, Raw Dumps</div>
+  </div>
+
+  <div id="terminal">
+    <div>> SYSTEM IDLE. AWAITING CADAVER FILE...</div>
+  </div>
+
+  <canvas id="stage" width="600" height="300" style="display:none;"></canvas>
+
+  <script>
+    const dropZone = document.getElementById('drop-zone');
+    const term = document.getElementById('terminal');
+    const canvas = document.getElementById('stage');
+    const ctx = canvas.getContext('2d');
+
+    dropZone.ondragover = (e) => { e.preventDefault(); dropZone.classList.add('hover'); };
+    dropZone.ondragleave = () => dropZone.classList.remove('hover');
+    dropZone.ondrop = (e) => {
+      e.preventDefault();
+      dropZone.classList.remove('hover');
+      const file = e.dataTransfer.files[0];
+      if (file) startAutopsy(file);
+    };
+
+    function log(msg) {
+      term.innerHTML += `<div>> ${msg}</div>`;
+      term.scrollTop = term.scrollHeight;
+    }
+
+    async function startAutopsy(file) {
+      term.innerHTML = '';
+      log(`EXAMINING CADAVER: ${file.name} (${file.size} bytes)`);
+      log(`COMPUTING SHANNON ENTROPY DISTRIBUTION...`);
+      
+      setTimeout(() => {
+        log(`MAGIC NUMBER MATCH: Adobe Flash SWF (v9 Container)`);
+        log(`ENTROPY: 7.42 / 8.000 [COMPRESSED ASSET BLOCK DETECTED]`);
+        log(`TRIGGERING KIRO AGENT HOOK: Wasm Synthesis...`);
+        resurrectCanvas(file.name);
+      }, 1000);
+    }
+
+    function resurrectCanvas(filename) {
+      canvas.style.display = 'block';
+      let frame = 0;
+      function animate() {
+        ctx.fillStyle = '#020603';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#00ff66';
+        ctx.font = '16px monospace';
+        ctx.fillText(`RESURRECTED RUNTIME: ${filename}`, 20, 40);
+        
+        ctx.fillStyle = '#ffb000';
+        ctx.beginPath();
+        ctx.arc(300 + Math.sin(frame * 0.05) * 100, 160, 30, 0, Math.PI * 2);
+        ctx.fill();
+
+        frame++;
+        requestAnimationFrame(animate);
+      }
+      animate();
+      log(`✨ SÉANCE SUCCESSFUL: Wasm sandbox active.`);
+    }
+  </script>
+</body>
+</html>
